@@ -1,5 +1,7 @@
 
-//Eloquent Javascript, page 37, make a silly little triangle:
+/*
+Eloquent Javascript, page 37, make a silly little triangle:
+*/
 
 function printTriangle(numLines) {
     thisLine = '';
