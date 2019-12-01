@@ -18,3 +18,6 @@ function minimumOfMany(...nums) { //Apparently "rest parameters" convert tons of
 }
 
 console.log(minimumOfMany(9,10,1,1,-4,200,4));
+
+//And, just to prove I can:
+console.log(Math.min(9,10,1,1,-4,200,4))
