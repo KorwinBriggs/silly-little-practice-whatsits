@@ -24,6 +24,8 @@ function recursiveFor(indexValue, testFunction, updateFunction, bodyFunction) {
     }
 }
 
+//Sadly, the internet says recursion is usually a bad way of doing things, on account of the stack.
+
 
 forLoop(3, n => n > 0, n => n - 1, console.log);
 recursiveFor(3, n => n > 0, n => n - 1, console.log);

@@ -22,12 +22,13 @@ function everySome (array, test) {
 }
 
 
+//tests:
+
 function biggerThan6(num) {
     if (num > 6) return true;
     return false;
 }
 
-//tests:
 let array = [5,6,7,8]
 
 console.log( everyFor(array, num => {return num > 4}) ) //true 
