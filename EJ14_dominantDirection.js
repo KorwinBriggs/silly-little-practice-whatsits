@@ -4,6 +4,8 @@ of a string of text, by checking the characters against a big ol' object made by
 the writers of the book.
 
 And use some of the functions from earlier in the book - characterScript, and countBy
+
+Also, I've decided that in case of a tie, I'll just return undefined.
 */
 
 
