@@ -28,7 +28,7 @@ loaded, it should be in require.cache, and therefore won't be loaded again, endi
 
 What happens if a module does replace its default exports object?
 I think, in that case, whichever module is loaded second would have replaced 
-both modules' exports objects?
+both modules' exports objects
 
 
 */
