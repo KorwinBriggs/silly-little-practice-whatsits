@@ -14,5 +14,5 @@ function skipSpace(string) {
     return newString;
 }
 
-console.log(skipSpace(" #test of this code"))
+console.log(skipSpace(` #test of this code`))
 
