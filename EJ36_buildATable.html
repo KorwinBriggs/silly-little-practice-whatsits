@@ -1,0 +1,60 @@
+<!-- Eloquent Javascript, page 241, use javascript to turn an array of objects
+with name, height, and place properties into an html table, using the DOM. -->
+
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+  /*function that:
+  builds a table element
+  goes down the list, adds a tr for each, with td's for each number
+  
+  */
+  function buildTable(dataArray) {
+      
+    let table = document.createElement("table");
+    for (let row = 0; row < dataArray.length; row++) {
+
+      let rowData = dataArray[row];
+      let newRow = document.createElement("tr");
+      let numberOfCells = Object.keys(rowData).length;
+
+      for (let i = 0; i < numberOfCells; i ++) {
+        let cell, info;
+
+        if (row == 0) {
+          cell = document.createElement("th");
+          cell.style.textTransform = "uppercase";
+          info = document.createTextNode(Object.keys(rowData)[i]);
+        } else {
+          cell = document.createElement("td");
+          info = document.createTextNode(Object.values(rowData)[i]);
+          if (typeof Object.values(rowData)[i] == "number") {
+              cell.style.textAlign = "right";
+          }
+        }   
+        cell.appendChild(info);
+        newRow.appendChild(cell);
+      }
+      table.appendChild(newRow);
+    }
+    return table;
+  }
+  
+  document.getElementById("mountains").appendChild(buildTable(MOUNTAINS)); 
+  
+</script>
+
+
+
