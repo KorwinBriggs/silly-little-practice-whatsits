@@ -1,10 +1,7 @@
 <!-- Eloquent Javascript, page 242, alter the cat example
-to make a hat also float around, opposite the cat.
-
-Of note: I think this is the first time I've had to use 
-sin/cosine for anything since 2014. I'll go back and actually
-re-learn trigonometry when I need to - for now, I just kind of
-screwed around plugging PI into things until it worked. -->
+to make a hat also float around, opposite the cat. Or, in my case,
+don't do that, and instead make it so the hat revolves around the cat.
+-->
 
 <style>body { min-height: 200px }</style>
 <img src="img/cat.png" id="cat" style="position: absolute">
@@ -23,11 +20,8 @@ screwed around plugging PI into things until it worked. -->
     cat.style.left = (Math.cos(angle) * 200 + 230) + "px";
 
     // Your extensions here.
-
-    if (lastTime != null) angle += (time - lastTime) * 0.001;
-    lastTime = time;
-    hat.style.top = (Math.sin(angle+Math.PI) * 40 + 40) + "px";
-    hat.style.left = (Math.cos(angle+Math.PI) * 200 + 230) + "px";
+    hat.style.top = ((Math.sin(angle * 3)) * 40 + (Math.sin(angle) * 40 + 40)) + "px";
+    hat.style.left = ((Math.cos(angle * 3)) * 40 + (Math.cos(angle) * 200 + 230)) + "px";
 
     requestAnimationFrame(animate);
   }
