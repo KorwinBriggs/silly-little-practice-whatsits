@@ -1,0 +1,26 @@
+<!-- Eloquent Javascript, page 259, write a page that displays a balloon emoji,
+inflates/deflates it with the up and down arrows (meaning alter fontsize),
+and replace it with an explosion emoji if it hits a certain size
+-->
+
+
+<p id="balloon" style="font-size: 10px;">🎈</p>
+
+<script>
+    "use strict";
+    let balloon = document.getElementById("balloon");
+    let balloonSize = 10;
+    let popped = false;
+    window.addEventListener("keydown", event => {
+        if (!popped) {
+            if (event.key == "ArrowDown" && balloonSize > 10) balloonSize -= 10;
+            if (event.key == "ArrowUp") balloonSize = balloonSize * 1.1; //smoother expansion
+        }
+        balloon.style.fontSize = balloonSize + "px";
+        if (balloonSize >= 200) {
+            balloon.textContent = "💥";
+            popped = true;
+        }
+    });
+
+</script>

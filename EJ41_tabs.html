@@ -1,0 +1,65 @@
+<!-- Eloquent Javascript, page 260, make a silly little tabbed document -
+or, more specifically, write a function asTabs that takes a node and creates a
+tabbed interface showing its children. 
+
+Nothing fancy or good-looking - just insert a list of ugly buttons at the top of 
+the node, one for each child, with text from the child's data-tabname attribute.
+And style the currently-selected button differently, so it's clear which is picked.
+-->
+
+<head></head>
+<body>
+
+<tab-panel>
+  <div data-tabname="one">Tab one</div>
+  <div data-tabname="two">Tab two</div>
+  <div data-tabname="three">Tab three</div>
+</tab-panel>
+
+</body>
+
+<script>
+
+    function asTabs(node) {
+
+        let tabs = node.children;
+
+        clearTabs(tabs); //setting it up so tab one starts displayed
+        tabs[0].style.display = "block";
+
+        let buttons = document.createElement("div"); //div for all buttons
+
+        for (let i = 0; i < tabs.length; i++) { //create each button
+            let button = document.createElement("button");
+            button.textContent = tabs[i].getAttribute("data-tabname");
+            button.style = "height: 40px; width: 50px; margin: 30px; background-color: lightblue;";
+            button.addEventListener("click", event => {
+                //displaying selected tab
+                if (!isDisplayed(tabs[i])) {
+                    clearTabs(tabs);
+                    tabs[i].style.display = "block";
+                }
+                //changing color of selected button
+                for (buttons of button.parentElement.children) {
+                    buttons.style.backgroundColor = "lightblue";
+                };
+                button.style.backgroundColor = "pink";
+            });
+
+            buttons.appendChild(button);
+        }
+        document.body.insertBefore(buttons, document.querySelector("tab-panel"));
+
+        function clearTabs(node) {    //I'm trying this thing where I don't repeat code.
+            for (let child of node) { //You know, like a programmer.
+                child.style.display = "none";
+            }
+        }
+        function isDisplayed (node) {
+            return (node.style.display != "none");
+        }
+    }
+
+    asTabs(document.querySelector("tab-panel"));
+
+</script>

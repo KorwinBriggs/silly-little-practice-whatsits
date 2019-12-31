@@ -1,0 +1,74 @@
+<!-- Eloquent Javascript, page 260, make a silly little mouse trail,
+like they had on Geocities sites when I was in middle school.
+-->
+
+
+
+<style>
+  .trail { /* className for the trail elements */
+    position: absolute;
+    height: 10px; width: 10px;
+    border-radius: 10px;
+    background: teal;
+    left: -100px;
+    top: -100px;
+  }
+  body {
+    height: 300px;
+  }
+</style>
+
+<body>
+</body>
+
+<script>
+    "use strict";
+    /*
+    create a bunch of dots
+    set up a time interval (50ms?)
+    and then each time it ticks, move one of those dots to the position of the mouse pointer
+    and after that I can set up an animation for each dot
+    */
+    //create the dots off-screen
+    let dots = [];
+
+    //a dot that always stays on the mouse and doesn't fade
+    let alwaysOnDot = document.createElement("div");
+    alwaysOnDot.className = "trail";
+    alwaysOnDot.id = "alwaysOnDot";
+    document.body.appendChild(alwaysOnDot);
+
+    for (let i = 0; i < 30; i++) {
+        let dot = document.createElement("div");
+        dot.className = "trail";
+        dot.id = "dot" + i;
+        document.body.appendChild(dot);
+        dots.push(dot);
+    }
+
+    //mousemove, with animation called inside
+    let currentDotNumber = 0;
+    window.addEventListener("mousemove", event => {
+        alwaysOnDot.style.left = event.pageX - 5 + "px";
+        alwaysOnDot.style.top = event.pageY - 5 + "px";
+
+        let currentDot = dots[currentDotNumber];
+        currentDot.style.opacity = 1;
+        currentDot.style.left = event.pageX - 5 + "px";
+        currentDot.style.top = event.pageY - 5 + "px";
+        currentDotNumber ++;
+        if (currentDotNumber == 30) currentDotNumber = 0;
+
+
+    });
+
+    //Initially I added a setInterval function to each dot, but that was
+    //performance intensive enough that my computer's fan started up. So
+    //now they're all on one interval.
+    setInterval(event => {
+        dots.forEach(dot => {
+            dot.style.opacity -= 0.01;
+        })
+    }, 3);
+
+</script>
